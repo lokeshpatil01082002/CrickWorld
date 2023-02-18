@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CrickWorld Blogs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <style>
+    nav {
+      background-color: grey;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      position: relative;
+    }
+
+    nav ul li {
+      display: inline-block;
+      background-color: #A7727D;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    nav a {
+      display: inline-block;
+      color: #F9F5E7;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    nav.bt {
+      display: inline-block;
+      color: #F9F5E7;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    
+    a:hover{
+      color: #EDDBC7;
+    }
+    #btnid:hover{
+      color: white;
+      background-color:green;
+    }
+    
+    nav ul ul {
+      display: none;
+      position: absolute;
+      top: 60px;
+    }
+
+    nav ul li:hover>ul {
+      display: inherit;
+    }
+
+    nav ul ul ul {
+      left: 100%;
+      top: 0;
+    }
+
+    nav ul li i {
+      margin-right: 10px;
+    }
+
+    nav ul ul {
+      background-color: black;
+      border-radius: 10px;
+    }
+
+    nav ul ul li {
+      float: none;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      position: relative;
+    }
+
+    nav ul ul ul ul {
+      position: absolute;
+      left: 100%;
+      top: 0;
+    }
+   
+  
+  #image{
+    align:center;
+    border: 5px solid black;
+    border-radius:15px;
+  }
+  .divtag{
+   
+    hight: auto;
+    width: auto;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-color:black;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  }
+  .navclass{
+     position:fixed;
+     width:100%;
+  }
+  #btnid{
+    width:400px;
+    height:50px;
+    border:3px solid black;
+    border-radius:5px;
+    hover{
+      color: green; }
+    
+  }
+  </style>
+</head>
+ 
+
+<body>
+  <nav class="navclass">
+    <ul>
+      
+      <li><a href="/home" ><i class="fa fa-window-restore"></i> Blogs</a></li>
+      <li><a href="/memes"><i class="fa fa-image"></i>Memes </a></form></li>
+      <li><a href="/addblog"><i class="fa fa-plus-circle"></i> Add Blog</a></li>
+      <li><a href="/addmeme"><i class="fa fa-plus-circle"></i> Add Meme</a></li>
+      <li><a href="/profile"><i class="fa fa-user"></i> My Profile</a></li>
+      <li><a href="/logout"><i class='fas fa-sign-out-alt' style='font-size:20px'></i>Log Out</a></li>
+     
+    </ul><br><br>
+    
+    <form action="" method="POST">
+      {% csrf_token %}
+      
+      <button class="fa fa-save" id="btnid" type=submit>  Click Here To Save Your Response Data !</button>
+      <input type="hidden" id="count" name="count" value="1">
+      <input type="hidden" id="count2" name="count2" value="1">
+      </form>
+    
+  </nav>
+  
+  <br><br><br><br><br><br><br><br><br><br>
+  {% for x in y %}
+  
+    
+    
+    
+    <div class="divtag">
+      <br><hr>
+      
+      <center><img src="/media/{{x.image}}" class="responsive-img" alt="" width="auto" id="image"
+      height="500" ></center>
+      <hr>
+      
+    
+      <div class="userid"><i>Posted By :{{x.userid}}</i></div>
+      <div class="date"><i>Posted On :{{x.date}}</i></div>
+      <div  class="likes"> Likes : <i id='likes_{{x.meme_id}}'>{{x.likes}}</i></div>
+      <center><button id='{{x.meme_id}}' class='unliked' onclick='ChangeColor({{x.meme_id}})' type="submit"><i class="fa fa-thumbs-up" ></i>Like It</button>
+      <button id='second_{{x.meme_id}}' class='unliked2' onclick='ChangeColor2({{x.meme_id}})' type="submit"><i class="fa fa-thumbs-down" ></i>Dont Show Again</button> </center><br><hr>
+        <style>
+          .liked{
+            background-color:red; width:200px;
+            height:50px;
+            color:black;
+            width:auto;
+            border-radius: 10px;
+            font-size:36px;
+            cursor: pointer;
+  
+          }
+          .unliked {
+            width:auto;
+            height:50px;
+            color:black;
+            background-color:#F9F5E7;
+            border-radius: 10px;     
+            font-size:36px;
+            cursor: pointer;
+            
+          }
+          .liked2{
+            background-color:red; width:200px;
+            height:50px;
+            color:black;
+            width:auto;
+            border-radius: 10px;
+            font-size:36px;
+            cursor: pointer;
+  
+          }
+          .unliked2 {
+            width:auto;
+            height:50px;
+            color:black;
+            background-color:#F9F5E7;
+            border-radius: 10px;     
+            font-size:36px;
+            cursor: pointer;
+            
+          }
+        </style>
+        </div>
+        <br><br>
+        
+       
+      
+    {% endfor %}
+  
+
+
+
+</body>
+
+</html>
+<script>
+
+   var array= new Array()
+   var array2= new Array()
+   
+   function ChangeColor(id)   
+  {  
+     
+      const curr =  document.getElementById(id);
+      const likes =  document.getElementById(`likes_${id}`);
+      if(curr.classList.contains('unliked')){
+        curr.classList.add('liked');
+        array.push(id)
+        curr.classList.remove('unliked');
+        likes.innerHTML = parseInt(likes.innerHTML)+1;
+        document.getElementById("count").value=array.toString()
+        console.log(document.getElementById("count").value)
+  }else{
+
+        curr.classList.add('unliked');
+       
+        for (var i = 0; i < array.length; i++) {
+          if (array[i] === id) {
+             array.splice(i, 1);
+          }
+      }
+        curr.classList.remove('liked');
+        likes.innerHTML = parseInt(likes.innerHTML)-1;
+      }
+  }
+
+  function ChangeColor2(id)   
+  {  
+      
+      const curr =  document.getElementById('second_' +id);
+     
+      if(curr.classList.contains('unliked2')){
+        curr.classList.add('liked2');
+        array.push(id)
+        curr.classList.remove('unliked2');
+        
+        document.getElementById("count2").value=array.toString()
+       
+  }else{
+
+        curr.classList.add('unliked2');
+       
+        for (var i = 0; i < array2.length; i++) {
+          if (array2[i] === id) {
+             array2.splice(i, 1);
+          }
+      }
+        curr.classList.remove('liked2');
+        
+      }
+  }
+
+
+
+  </script>
